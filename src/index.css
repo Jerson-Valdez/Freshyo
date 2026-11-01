@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --font-heading: "Outfit", sans-serif;
+  --color-fresh: #059669;
+  --color-bayong: #f59e0b;
+  --color-price-up: #e11d48;
+  --color-price-down: #059669;
+  --color-price-stable: #64748b;
+}
+
+:root {
+  font-family: var(--font-sans);
+  color: #1c1917;
+  background: #fafaf9;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --canvas: #fafaf9;
+  --brand-primary: #059669;
+  --brand-accent: #f59e0b;
+  --text-primary: #1c1917;
+  --text-secondary: #78716c;
+  --line: #e7e5e4;
+  --price-increase-bg: #fff1f2;
+  --price-increase-text: #e11d48;
+  --price-drop-bg: #ecfdf5;
+  --price-drop-text: #059669;
+  --price-stable-bg: #f1f5f9;
+  --price-stable-text: #64748b;
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  min-width: 360px;
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  min-width: 360px;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+::selection {
+  background: #d1fae5;
+  color: #064e3b;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+.price-trend {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.price-trend--increase {
+  color: var(--price-increase-text);
+  background: var(--price-increase-bg);
+}
+.price-trend--drop {
+  color: var(--price-drop-text);
+  background: var(--price-drop-bg);
+}
+.price-trend--stable {
+  color: var(--price-stable-text);
+  background: var(--price-stable-bg);
+}
