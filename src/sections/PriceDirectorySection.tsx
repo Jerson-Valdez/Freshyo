@@ -3,6 +3,7 @@ import { Search } from "lucide-react";
 import { useBasket } from "../app/contexts/BasketContext";
 import { useMarket } from "../app/contexts/MarketContext";
 import { CommodityCard } from "../components/cards/CommodityCard";
+import { FilterChips } from "../components/filters/FilterChips";
 import { Chinny } from "../components/mascot/Chinny";
 
 const categoryLabels: Record<string, string> = {
@@ -68,22 +69,12 @@ export function PriceDirectorySection() {
             placeholder="Hal. sibuyas, kamatis"
           />
         </label>
-        <div
-          className="flex flex-wrap snap-x gap-1 bg-stone-100 p-2 rounded-3xl shadow-lg"
-          role="group"
-          aria-label="Salain ayon sa kategorya"
-        >
-          {categories.map((item) => (
-            <button
-              key={item}
-              className={`min-h-10 shrink-0 snap-start whitespace-nowrap rounded-full px-3 text-xs transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 ${category === item ? "bg-emerald-700 font-semibold text-white" : "text-stone-600 hover:bg-stone-200"}`}
-              aria-pressed={category === item}
-              onClick={() => setCategory(item)}
-            >
-              {categoryLabels[item] ?? item}
-            </button>
-          ))}
-        </div>
+        <FilterChips
+          ariaLabel="Salain ayon sa kategorya"
+          options={categories.map((item) => ({ value: item, label: categoryLabels[item] ?? item }))}
+          value={category}
+          onChange={setCategory}
+        />
       </div>
       <div className="flex flex-col gap-2">
         {filtered.map((item) => (
