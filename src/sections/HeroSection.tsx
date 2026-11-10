@@ -1,5 +1,6 @@
 import { ArrowDown } from "lucide-react";
 import { Chinny } from "../components/mascot/Chinny";
+import { NavLink } from "react-router";
 
 export function HeroSection() {
   return (
@@ -17,14 +18,14 @@ export function HeroSection() {
         <p className="mt-2 max-w-md text-[13px] leading-5 text-stone-600 sm:mt-4 sm:text-sm sm:leading-6">
           Tingnan ang presyo at tantiyahin ang gastos bago mamalengke.
         </p>
-        <a
+        <NavLink
           className="mt-4 inline-flex min-h-10 items-center gap-1.5 rounded-2xl bg-emerald-700 px-3 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 sm:mt-6 sm:min-h-11 sm:gap-2 sm:px-5 sm:text-sm hover:shadow-md hover:-translate-y-0.5 duration-300 transistion-all"
-          href="#prices"
+          to="/prices"
         >
           <span className="sm:hidden">Mga presyo</span>
           <span className="hidden sm:inline">Tingnan ang mga presyo</span>
           <ArrowDown aria-hidden="true" className="size-4" />
-        </a>
+        </NavLink>
       </div>
       <div className="relative flex h-40 min-w-0 items-center justify-center sm:h-72 md:h-80">
         <div
