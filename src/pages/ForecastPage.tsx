@@ -6,6 +6,7 @@ import { ForecastItemCard } from "../components/cards/ForecastItemCard"
 import { FilterChips } from "../components/filters/FilterChips"
 import { Footer } from "../components/layout/Footer"
 import { Header } from "../components/layout/Header"
+import { Navigation } from "../components/layout/Navigation"
 import { NavLink } from "react-router"
 
 // Temporary demonstration rates. Replace these with outputs from a trained model and historical price data.
@@ -70,7 +71,9 @@ export function ForecastPage() {
   return (
     <div className="min-h-screen bg-stone-50 text-stone-900">
       <Header />
-      <div className="mx-auto w-full max-w-6xl px-3 pt-24 sm:px-6 sm:pt-28 lg:px-12">
+      <Navigation />
+      <div className="pt-24 pb-[calc(6rem+env(safe-area-inset-bottom))] sm:pt-28 sm:pb-0 lg:pl-64 lg:pt-28">
+        <div className="mx-auto w-full max-w-6xl px-3 sm:px-6 lg:px-8">
         <main className="pb-8">
           <div className="mb-6 flex flex-wrap items-end justify-between gap-4 sm:mb-8">
             <div>
@@ -165,6 +168,7 @@ export function ForecastPage() {
           </section>
         </main>
         <Footer />
+        </div>
       </div>
     </div>
   )

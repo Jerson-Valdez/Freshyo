@@ -1,61 +1,57 @@
-import { ChartNoAxesColumnIncreasing, ChartNoAxesCombined, MapPin, ShoppingBasket } from "lucide-react";
-import { NavLink } from "react-router";
+import { ShoppingBasket } from "lucide-react";
+import type { MouseEvent } from "react";
+import { Link, useLocation } from "react-router";
+import { useBasket } from "../../app/contexts/BasketContext";
 
-const navItemBase = "flex h-10 items-center justify-center gap-2 rounded-full px-4 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 max-sm:size-11 max-sm:px-0";
-const navItemState = ({ isActive }: { isActive: boolean }) => `${navItemBase} ${isActive ? "bg-emerald-700 font-semibold text-white hover:bg-emerald-800" : "text-stone-600 hover:bg-emerald-50 hover:text-emerald-800"}`;
+type ActiveSection = "home" | "prices" | "basket" | null;
 
-export function Header() {
+export function Header({ activeSection }: { activeSection?: ActiveSection }) {
+  const { pathname } = useLocation();
+  const { basket } = useBasket();
+  const basketActive = activeSection === undefined
+    ? pathname === "/basket"
+    : activeSection === "basket";
+
+  function scrollToBasket(event: MouseEvent<HTMLAnchorElement>) {
+    if (pathname !== "/basket") return;
+    event.preventDefault();
+    document.getElementById("basket")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function scrollToHome(event: MouseEvent<HTMLAnchorElement>) {
+    if (pathname !== "/") return;
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   return (
-    <header className="fixed left-1/2 top-2 z-50 w-sm -translate-x-1/2 rounded-full border border-emerald-100/80 bg-stone-50/20 shadow-[0_4px_24px_rgba(31,77,0,0.05)] backdrop-blur-xs supports-[backdrop-filter]:bg-stone-50/75 max-sm:w-[calc(100vw-2rem)] lg:w-6xl">
-      <div className="mx-auto flex h-16 max-w-6xl items-center px-12 max-md:px-6 max-sm:px-4">
-        <NavLink
-          className="flex shrink-0 items-center rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700"
+    <header className="fixed inset-x-3 top-3 z-50 mx-auto max-w-7xl rounded-full border border-white/80 bg-stone-50/70 shadow-[0_8px_30px_rgba(31,77,0,0.13)] backdrop-blur-2xl">
+      <div className="flex h-14 items-center justify-between px-4 sm:h-16 sm:px-6">
+        <Link
+          className="flex min-h-11 items-center rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700"
           to="/"
-          end
+          onClick={scrollToHome}
           aria-label="Freshyo, simula"
         >
-          <img
-            src="/freshyo-leaf.png"
-            alt=""
-            className="h-11 w-auto object-contain max-sm:h-9"
-          />
-        </NavLink>
-        <nav
-          className="ml-10 flex h-full items-center gap-5 text-sm max-sm:ml-auto max-sm:gap-2.5 lg:gap-8"
-          aria-label="Pangunahing nabigasyon"
+          <img src="/freshyo-leaf.png" alt="Freshyo" className="h-9 w-auto object-contain sm:h-11" />
+        </Link>
+        <Link
+          to="/basket"
+          onClick={scrollToBasket}
+          aria-label={`Aking listahan, ${basket.length} bilihin`}
+          aria-current={basketActive ? "page" : undefined}
+          className={`relative inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-3 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 ${basketActive ? "bg-emerald-700 text-white" : "text-emerald-900 hover:bg-emerald-50"}`}
         >
-          <NavLink
-            className={navItemState}
-            to="/prices"
-            end
-            aria-label="Mga presyo"
-          >
-            <ChartNoAxesColumnIncreasing aria-hidden="true" className="size-4" />
-            <span className="max-sm:hidden">Mga presyo</span>
-          </NavLink>
-          <NavLink
-            className={navItemState}
-            to="/forecast"
-            end
-            aria-label="Pagtataya ng presyo"
-          >
-            <ChartNoAxesCombined aria-hidden="true" className="size-4" />
-            <span className="max-sm:hidden">Pagtataya</span>
-          </NavLink>
-          <NavLink
-            className={({ isActive }) => `flex h-10 items-center gap-2 rounded-full px-3 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 ${isActive ? "bg-emerald-700 font-semibold text-white hover:bg-emerald-800" : "text-stone-600 hover:bg-emerald-50 hover:text-emerald-800"}`}
-            to="/basket"
-            end
-          >
-            <ShoppingBasket aria-hidden="true" className="size-4" />
-            <span className="max-sm:hidden">Aking listahan</span>
-            <span className="sm:hidden">Listahan</span>
-          </NavLink>
-        </nav>
-        <span className="ml-auto flex items-center gap-1.5 text-xs text-stone-500 max-sm:hidden">
-          <MapPin aria-hidden="true" className="size-4 text-emerald-700" />
-          Pilipinas
-        </span>
+          <span className="relative inline-flex">
+            <ShoppingBasket aria-hidden="true" className="size-5" />
+            {basket.length > 0 && (
+              <span className="absolute -top-2 -right-2 inline-flex size-4 items-center justify-center rounded-full bg-amber-500 text-[9px] font-bold text-stone-950">
+                {basket.length > 9 ? "9+" : basket.length}
+              </span>
+            )}
+          </span>
+          <span className="hidden sm:inline">Listahan</span>
+        </Link>
       </div>
     </header>
   );

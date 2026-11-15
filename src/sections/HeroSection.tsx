@@ -5,7 +5,8 @@ import { NavLink } from "react-router";
 export function HeroSection() {
   return (
     <section
-      className="relative mt-3 grid min-h-[15rem] grid-cols-[minmax(0,1.1fr)_minmax(7rem,.9fr)] items-center gap-1 overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-100 via-stone-100 to-amber-100 px-4 py-4 sm:mt-6 sm:min-h-[21rem] sm:grid-cols-[1.05fr_.95fr] sm:gap-2 sm:rounded-[2rem] sm:px-8 sm:py-7 lg:px-10"
+      id="home"
+      className="relative mt-3 grid min-h-[15rem] scroll-mt-20 grid-cols-[minmax(0,1.1fr)_minmax(7rem,.9fr)] items-center gap-1 overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-100 via-stone-100 to-amber-100 px-4 py-4 sm:mt-6 sm:min-h-[21rem] sm:grid-cols-[1.05fr_.95fr] sm:gap-2 sm:rounded-[2rem] sm:px-8 sm:py-7 lg:scroll-mt-24 lg:px-10"
       aria-labelledby="home-heading"
     >
       <div className="relative z-10 flex flex-col items-start justify-center py-5 max-md:pb-0">
