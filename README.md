@@ -1,3 +1,4 @@
-# Live pricing of local goods in wet market
+# Freshyo
+Your companion in local good prices
 
 ## Tech Stack Used
