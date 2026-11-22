@@ -86,7 +86,7 @@ export function Navigation({ activeSection }: { activeSection?: ActiveSection })
     <>
       <nav
         aria-label="Pangunahing nabigasyon"
-        className="fixed top-24 left-5 z-40 hidden h-fit w-56 flex-col gap-1 rounded-3xl border border-white/80 bg-white/68 p-3 shadow-[0_10px_32px_rgba(31,77,0,0.12)] ring-1 ring-emerald-950/5 backdrop-blur-2xl lg:flex"
+        className="fixed top-24 left-5 z-40 hidden h-10/12 w-56 flex-col gap-1 rounded-4xl border border-white/80 bg-white/68 p-3 shadow-[0_10px_32px_rgba(31,77,0,0.12)] ring-1 ring-emerald-950/5 backdrop-blur-xs lg:flex"
       >
         {items.map((item) => (
           <NavItem key={item.id} item={item} mobile={false} active={activeFor(item)} pathname={pathname} />
@@ -94,7 +94,7 @@ export function Navigation({ activeSection }: { activeSection?: ActiveSection })
       </nav>
       <nav
         aria-label="Pangunahing nabigasyon"
-        className="fixed inset-x-3 bottom-[calc(env(safe-area-inset-bottom)+0.75rem)] z-50 flex items-center justify-around gap-1 rounded-full border border-white/80 bg-stone-50/68 px-2 py-2 shadow-[0_10px_32px_rgba(31,77,0,0.15)] ring-1 ring-emerald-950/5 backdrop-blur-2xl lg:hidden"
+        className="fixed inset-x-3 bottom-[calc(env(safe-area-inset-bottom)+0.75rem)] z-50 flex items-center justify-between gap-1 rounded-full border border-white/80 bg-stone-50/68 px-2 py-2 shadow-[0_10px_32px_rgba(31,77,0,0.15)] ring-1 ring-emerald-950/5 backdrop-blur-xs lg:hidden"
       >
         {items.map((item) => (
           <NavItem key={item.id} item={item} mobile active={activeFor(item)} pathname={pathname} />

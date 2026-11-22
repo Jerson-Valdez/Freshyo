@@ -8,14 +8,17 @@ type ActiveSection = "home" | "prices" | "basket" | null;
 export function Header({ activeSection }: { activeSection?: ActiveSection }) {
   const { pathname } = useLocation();
   const { basket } = useBasket();
-  const basketActive = activeSection === undefined
-    ? pathname === "/basket"
-    : activeSection === "basket";
+  const basketActive =
+    activeSection === undefined
+      ? pathname === "/basket"
+      : activeSection === "basket";
 
   function scrollToBasket(event: MouseEvent<HTMLAnchorElement>) {
     if (pathname !== "/basket") return;
     event.preventDefault();
-    document.getElementById("basket")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document
+      .getElementById("basket")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   function scrollToHome(event: MouseEvent<HTMLAnchorElement>) {
@@ -25,7 +28,7 @@ export function Header({ activeSection }: { activeSection?: ActiveSection }) {
   }
 
   return (
-    <header className="fixed inset-x-3 top-3 z-50 mx-auto max-w-7xl rounded-full border border-white/80 bg-stone-50/70 shadow-[0_8px_30px_rgba(31,77,0,0.13)] backdrop-blur-2xl">
+    <header className="fixed inset-x-3 top-3 z-50 mx-auto max-w-7xl rounded-full border border-white/80 bg-stone-50/70 shadow-[0_8px_30px_rgba(31,77,0,0.13)] backdrop-blur-xs">
       <div className="flex h-14 items-center justify-between px-4 sm:h-16 sm:px-6">
         <Link
           className="flex min-h-11 items-center rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700"
@@ -33,7 +36,11 @@ export function Header({ activeSection }: { activeSection?: ActiveSection }) {
           onClick={scrollToHome}
           aria-label="Freshyo, simula"
         >
-          <img src="/freshyo-leaf.png" alt="Freshyo" className="h-9 w-auto object-contain sm:h-11" />
+          <img
+            src="/freshyo-leaf.png"
+            alt="Freshyo"
+            className="h-9 w-auto object-contain sm:h-11"
+          />
         </Link>
         <Link
           to="/basket"

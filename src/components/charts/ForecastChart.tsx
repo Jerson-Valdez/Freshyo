@@ -27,7 +27,7 @@ export function ForecastChart({ averageChange }: ForecastChartProps) {
   const monthEnd = `${averageChange > 0 ? "+" : ""}${averageChange.toFixed(1)}`
 
   return (
-    <section className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-stone-200 sm:p-6" aria-labelledby="forecast-chart-heading">
+    <section className="rounded-2xl bg-white p-4 shadow-lg sm:p-6" aria-labelledby="forecast-chart-heading">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h2 id="forecast-chart-heading" className="font-heading text-lg font-semibold text-stone-900 sm:text-xl">
